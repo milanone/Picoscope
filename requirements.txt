@@ -1,0 +1,4 @@
+numpy>=2.0   # np.trapezoid
+pandas
+matplotlib
+tkinterdnd2   # optional: drag-and-drop of files

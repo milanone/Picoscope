@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.claude/
+
+# Measurement data (raw Picoscope exports and converted spectra) stays local
+*.csv
