@@ -54,3 +54,7 @@ converted spectra stay on your machine.
 
 Python 3.10+, numpy 2.0 or newer (the area uses `np.trapezoid`), pandas, matplotlib, and
 optionally `tkinterdnd2`. Interface labels are in English; code comments are in Italian.
+
+## License
+
+[MIT](LICENSE)
