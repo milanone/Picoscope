@@ -4,7 +4,10 @@ A small desktop app (tkinter + matplotlib) that turns raw Picoscope recordings o
 wavelength-scanning measurement into spectra: time is converted to wavelength, the signal is
 smoothed and resampled on a 1 nm grid, and several spectra can be compared and exported
 together. Its look and workflow follow
-[LabSpectrumManager](https://github.com/milanone/LabSpectrumManager).
+[LabSpectrumManager](https://github.com/milanone/LabSpectrumManager), and its plots use the shared Origin-like
+style of [PlotStyleKit](https://github.com/milanone/PlotStyleKit).
+
+![Picoscope Spectrum Manager](screenshot.png)
 
 ## What it does
 
@@ -19,6 +22,8 @@ together. Its look and workflow follow
   mouse, list of loaded spectra with their metadata (including the integrated area).
 - Right-click a spectrum in the list to copy it to the clipboard as X/Y columns, or in a layout for pasting into Origin.
 - Exports all loaded spectra to a single CSV (one column per spectrum, wavelength as index).
+- `File` menu: `Save Figure Image (PNG, PDF, SVG)...`, `Save Figure (pickle)...` and `Edit Figure...` (opens the
+  PlotStyleKit figure editor on a copy of the plot, restyled as a 4:3 single-column Origin figure).
 
 ## Conversion parameters
 
@@ -42,18 +47,29 @@ pip install -r requirements.txt
 python picoscope_gui.pyw
 ```
 
-On Windows, `pythonw picoscope_gui.pyw` starts it without a console window. Files can be
-opened from the dialog or dropped on the window when `tkinterdnd2` is installed.
+`pythonw picoscope_gui.pyw [file.csv ...]` starts it without a console window. Files can be
+opened from the dialog, passed on the command line or dropped on the window when `tkinterdnd2` is installed.
+The plot style needs the [PlotStyleKit](https://github.com/milanone/PlotStyleKit) repo next to this folder; without
+it the app still works with plain matplotlib defaults and the figure editor is unavailable.
+
+## Tests
+
+```
+py -m unittest discover -s tests -v
+```
+
+The conversion and the app are tested on synthetic recordings; one test also loads a real recording from
+`example data/` if it is there (gitignored).
 
 ## Data
 
-This repository contains code only: `.gitignore` excludes `*.csv`, so recordings and
-converted spectra stay on your machine.
+This repository contains code only: `.gitignore` excludes `*.csv` and the `example data/` folder, so recordings
+and converted spectra stay on your machine. The screenshot shows two real recordings.
 
 ## Requirements
 
 Python 3.10+, numpy 2.0 or newer (the area uses `np.trapezoid`), pandas, matplotlib, and
-optionally `tkinterdnd2`. Interface labels are in English; code comments are in Italian.
+optionally `tkinterdnd2`. Tested on Windows only.
 
 ## License
 

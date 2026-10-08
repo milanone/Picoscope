@@ -4,3 +4,5 @@ __pycache__/
 
 # Measurement data (raw Picoscope exports and converted spectra) stays local
 *.csv
+example data/
+*.lnk
